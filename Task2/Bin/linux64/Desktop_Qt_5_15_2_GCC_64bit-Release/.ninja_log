@@ -1,0 +1,21 @@
+# ninja log v6
+0	89	1743751245291481585	Task2_autogen/timestamp	b8696a0d7190fa1d
+0	89	1743751245291481585	Task2_autogen/mocs_compilation.cpp	b8696a0d7190fa1d
+0	89	1743751245291481585	/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/Task2_autogen/timestamp	b8696a0d7190fa1d
+0	89	1743751245291481585	/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/Task2_autogen/mocs_compilation.cpp	b8696a0d7190fa1d
+90	1385	1743751245297484585	CMakeFiles/Task2.dir/mainwindow.cpp.o	bfe4925fc55f6a0c
+89	1450	1743751245296484085	CMakeFiles/Task2.dir/main.cpp.o	793d702ce1771ed8
+89	1476	1743751245296484085	CMakeFiles/Task2.dir/Task2_autogen/mocs_compilation.cpp.o	99b683900fd44c9a
+90	1720	1743751245297484585	CMakeFiles/Task2.dir/groundwaterdialog.cpp.o	955b563177e0e7fb
+1720	1917	1743751246927299100	Task2	ec32344a7bd22026
+3	20	1743770431535829343	CMakeFiles/clean.additional	cfaea8f54d62f73c
+20	24	1743770431552829064	clean	cd3ce6691db1fc1b
+4	98	1743770447926556512	Task2_autogen/timestamp	b8696a0d7190fa1d
+4	98	1743770447926556512	Task2_autogen/mocs_compilation.cpp	b8696a0d7190fa1d
+4	98	1743770447926556512	/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/Task2_autogen/timestamp	b8696a0d7190fa1d
+4	98	1743770447926556512	/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/Task2_autogen/mocs_compilation.cpp	b8696a0d7190fa1d
+99	1515	1743770447934556378	CMakeFiles/Task2.dir/main.cpp.o	793d702ce1771ed8
+98	1521	1743770447932556411	CMakeFiles/Task2.dir/Task2_autogen/mocs_compilation.cpp.o	99b683900fd44c9a
+100	1536	1743770447934556378	CMakeFiles/Task2.dir/mainwindow.cpp.o	bfe4925fc55f6a0c
+100	1701	1743770447934556378	CMakeFiles/Task2.dir/groundwaterdialog.cpp.o	955b563177e0e7fb
+1702	1921	1743770449536529332	Task2	ec32344a7bd22026
