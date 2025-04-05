@@ -4,8 +4,8 @@
 #include <functional>
 #include <unordered_set>
 #include <cmath>
-#include <cstdint>
 #include <fstream>
+#include <format>
 #include <type_traits>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,17 +59,12 @@ struct WaterPressurePoints {
 };
 
 namespace Helper {
-double round_to(double value, double precision = 1.0)
-{
-    return std::round(value / precision) * precision;
-}
-
 std::size_t Hash(const WaterPressurePoints& point)
 {
-    std::int64_t rounded_x = static_cast<std::int64_t>(point.x / kEpsilon);
-    std::int64_t rounded_y = static_cast<std::int64_t>(point.y / kEpsilon);
-    std::size_t hash_x = std::hash<std::int64_t>()(rounded_x);
-    std::size_t hash_y = std::hash<std::int64_t>()(rounded_y);
+    double rounded_x = std::round(point.x / kEpsilon) * kEpsilon;
+    double rounded_y = std::round(point.y / kEpsilon) * kEpsilon;
+    std::size_t hash_x = std::hash<double>()(rounded_x);
+    std::size_t hash_y = std::hash<double>()(rounded_y);
 
     // Hash algorithm is inspired by Boost C++'s hash_combine
     // https://www.boost.org/doc/libs/1_55_0/doc/html/hash/reference.html#boost.hash_combine
@@ -85,8 +80,10 @@ std::size_t Hash(const WaterPressurePoints& point)
 // Overloading ofstream << WaterPressurePoints for cleaner stream formatting.
 std::ofstream& operator<<(std::ofstream& ofs, const WaterPressurePoints& point)
 {
-    ofs << std::left << std::setw(3) << point.x << " ";
-    ofs << std::left << std::setw(3) << point.y << " ";
+    static int max_precision = 16;
+
+    ofs << std::left << std::setw(3) << std::format("{:.{}g}", point.x, max_precision) << " ";
+    ofs << std::left << std::setw(3) << std::format("{:.{}g}", point.y, max_precision) << " ";
 
     double rounded_water_pressure = std::round(point.water_pressure * 1000.0) / 1000.0;
 
@@ -106,7 +103,7 @@ void WriteWaterPressure(const std::vector<WaterPressurePoints>& points)
     std::ofstream out_file(".\\WaterPressurePoints.txt", std::ios::out | std::ios::trunc); // Clear file when opening.
 
     if (out_file) {
-        for (WaterPressurePoints point : points) {
+        for (const WaterPressurePoints& point : points) {
             std::size_t h = Helper::Hash(point);
 
             if (rough_seen_points.find(h) != rough_seen_points.end()) { // 1st pass
