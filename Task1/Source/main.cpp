@@ -61,8 +61,8 @@ struct WaterPressurePoints {
 namespace Helper {
 std::size_t Hash(const WaterPressurePoints& point)
 {
-    double rounded_x = std::round(point.x / kEpsilon) * kEpsilon;
-    double rounded_y = std::round(point.y / kEpsilon) * kEpsilon;
+    double rounded_x = std::round(static_cast<long double>(point.x) / static_cast<long double>(kEpsilon)) * static_cast<long double>(kEpsilon);
+    double rounded_y = std::round(static_cast<long double>(point.y) / static_cast<long double>(kEpsilon)) * static_cast<long double>(kEpsilon);
     std::size_t hash_x = std::hash<double>()(rounded_x);
     std::size_t hash_y = std::hash<double>()(rounded_y);
 

@@ -1,9 +1,0 @@
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/Task2.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/edit_cache.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/rebuild_cache.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/list_install_components.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/install.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/install/local.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/install/strip.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/Task2_autogen_timestamp_deps.dir
-/home/brian/Task2/build/Desktop_Qt_5_15_2_GCC_64bit-Release/CMakeFiles/Task2_autogen.dir
