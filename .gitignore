@@ -11,3 +11,7 @@ Task2/Source/CMakeLists.txt.user
 /Old/Task1/Bin
 /Task1/Bin
 /Old/Task2/Bin
+/Task_1/.vs
+/Task_1/x64
+*.user
+/Task_1/Task_1
