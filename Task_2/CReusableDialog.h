@@ -1,16 +1,16 @@
 #pragma once
 #include "afxdialogex.h"
-
+#include "DialogDataModel.h"
 
 // CReusableDialog dialog
 
-class CReusableDialog : public CDialogEx
+class CReusableDialog final : public CDialogEx
 {
 	DECLARE_DYNAMIC(CReusableDialog)
 
 public:
-	CReusableDialog(CWnd* pParent = nullptr);   // standard constructor
-	virtual ~CReusableDialog();
+	CReusableDialog(DialogDataModel& model, CWnd* pParent = nullptr);   // standard constructor
+	virtual ~CReusableDialog() = default;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
@@ -19,6 +19,16 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()
+
+private:
+	DialogDataModel&	m_model;
+	CComboBox			m_comboBox;
+	CStatic				m_label;
+
+	void AdjustComboBoxDropHeight(CComboBox& comboBox, int visibleItems);
+
+	afx_msg void OnCbnSelchangeCombobox();
 };

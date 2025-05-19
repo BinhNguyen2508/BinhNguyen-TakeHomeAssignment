@@ -7,6 +7,7 @@
 #include "Task_2.h"
 #include "Task_2Dlg.h"
 #include "CReusableDialog.h"
+#include "DialogDataModel.h"
 #include "afxdialogex.h"
 
 #ifdef _DEBUG
@@ -22,11 +23,22 @@ CTask2Dlg::CTask2Dlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_TASK_2_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_groundWaterMethodOptions.Add(CString("Static Water"));
+	m_groundWaterMethodOptions.Add(CString("Steady FEA"));
+	m_groundWaterMethodOptions.Add(CString("Transient FEA"));
+	m_groundWaterMethodSelectedOptionIndex = 0;
+
+	m_thermalMethodOptions.Add(CString("Static Temperature"));
+	m_thermalMethodOptions.Add(CString("Steady Thermal FEA"));
+	m_thermalMethodOptions.Add(CString("Transient Thermal FEA"));
+	m_thermalMethodSelectedOptionIndex = 0;
 }
 
 void CTask2Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_LABEL1, m_groundWaterMethodLabel);
+	DDX_Control(pDX, IDC_LABEL2, m_thermalMethodLabel);
 }
 
 BEGIN_MESSAGE_MAP(CTask2Dlg, CDialogEx)
@@ -93,13 +105,35 @@ HCURSOR CTask2Dlg::OnQueryDragIcon()
 
 void CTask2Dlg::OnBnClickedButton1()
 {
-	CReusableDialog settingDialog;
-	m_pSettingDialog = &settingDialog;
+	//Initialize dialog data model
+	DialogDataModel model(DialogDataModel::SettingType::GroundWaterMethod, CString("Ground Water Method:"), &m_groundWaterMethodOptions);
+	model.SetSelectedOptionIndex(m_groundWaterMethodSelectedOptionIndex);
+
+	//Construct CReusableDialog
+	CReusableDialog settingDialog(model, this);
+
+	//Launch CReusableDialog
 	settingDialog.DoModal();
+
+	//Post CReusableDialog destruction
+	m_groundWaterMethodSelectedOptionIndex = model.GetSelectedOptionIndex();
+	m_groundWaterMethodLabel.SetWindowTextW(m_groundWaterMethodOptions.GetAt(m_groundWaterMethodSelectedOptionIndex));
 }
 
 
 void CTask2Dlg::OnBnClickedButton2()
 {
-	// TODO: Add your control notification handler code here
+	//Initialize dialog data model
+	DialogDataModel model(DialogDataModel::SettingType::ThermalMethod, CString("Thermal Method:"), &m_thermalMethodOptions);
+	model.SetSelectedOptionIndex(m_thermalMethodSelectedOptionIndex);
+
+	//Construct CReusableDialog
+	CReusableDialog settingDialog(model, this);
+
+	//Launch CReusableDialog
+	settingDialog.DoModal();
+
+	//Post CReusableDialog destruction
+	m_thermalMethodSelectedOptionIndex = model.GetSelectedOptionIndex();
+	m_thermalMethodLabel.SetWindowTextW(m_thermalMethodOptions.GetAt(m_thermalMethodSelectedOptionIndex));
 }

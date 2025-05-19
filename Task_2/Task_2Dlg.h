@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include "CReusableDialog.h"
+//#include "CReusableDialog.h"
 
 // CTask2Dlg dialog
 class CTask2Dlg : public CDialogEx
@@ -35,5 +35,11 @@ public:
 	afx_msg void OnBnClickedButton2();
 
 private:
-	CReusableDialog* m_pSettingDialog;
+	CStringArray	m_groundWaterMethodOptions;
+	CStringArray	m_thermalMethodOptions;
+	int				m_groundWaterMethodSelectedOptionIndex;
+	int				m_thermalMethodSelectedOptionIndex;
+
+	CStatic			m_groundWaterMethodLabel;
+	CStatic			m_thermalMethodLabel;
 };

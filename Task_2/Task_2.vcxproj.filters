@@ -36,6 +36,9 @@
     <ClInclude Include="CReusableDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DialogDataModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Task_2.cpp">
