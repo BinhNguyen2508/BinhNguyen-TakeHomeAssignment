@@ -6,7 +6,9 @@
 //#include "CReusableDialog.h"
 
 // CTask2Dlg dialog
-class CTask2Dlg : public CDialogEx
+// Marked final as the assignment scope is fixed, no more extension needed.
+
+class CTask2Dlg final : public CDialogEx
 {
 // Construction
 public:
@@ -17,8 +19,8 @@ public:
 	enum { IDD = IDD_TASK_2_DIALOG };
 #endif
 
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+protected:
+	void DoDataExchange(CDataExchange* pDX) override;	// DDX/DDV support
 
 
 // Implementation
@@ -26,7 +28,7 @@ protected:
 	HICON m_hIcon;
 
 	// Generated message map functions
-	virtual BOOL OnInitDialog();
+	BOOL OnInitDialog() override;
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()

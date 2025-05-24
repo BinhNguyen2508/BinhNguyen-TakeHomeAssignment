@@ -1,7 +1,9 @@
 #pragma once
 #include <afxcoll.h>
 
-class DialogDataModel
+// Marked final as the assignment scope is fixed, no more extension needed.
+
+class DialogDataModel final
 {
 public:
 	enum SettingType
@@ -10,8 +12,14 @@ public:
 		ThermalMethod
 	};
 
-	DialogDataModel(SettingType type, const CString& labelText, CStringArray* comboBoxOptions, int comboBoxSelectedIndex = 0)
-		: m_settingType(type), m_labelText(labelText), m_pComboBoxOptions(comboBoxOptions), m_comboBoxSelectedIndex(comboBoxSelectedIndex) {};
+	DialogDataModel(SettingType type,
+		const CString& labelText,
+		CStringArray* comboBoxOptions,
+		int comboBoxSelectedIndex = 0)
+		: m_settingType(type),
+		m_labelText(labelText),
+		m_pComboBoxOptions(comboBoxOptions),
+		m_comboBoxSelectedIndex(comboBoxSelectedIndex) {};
 	~DialogDataModel() = default;
 
 	int				GetSettingType() const						{ return m_settingType; };

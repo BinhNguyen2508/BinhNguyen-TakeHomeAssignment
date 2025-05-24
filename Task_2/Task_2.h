@@ -13,16 +13,17 @@
 
 // CTask2App:
 // See Task_2.cpp for the implementation of this class
+// Marked final as the assignment scope is fixed, no more extension needed.
 //
 
-class CTask2App : public CWinApp
+class CTask2App final : public CWinApp
 {
 public:
 	CTask2App();
 
 // Overrides
 public:
-	virtual BOOL InitInstance();
+	BOOL InitInstance() override;
 
 // Implementation
 

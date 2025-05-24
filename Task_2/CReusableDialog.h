@@ -3,6 +3,7 @@
 #include "DialogDataModel.h"
 
 // CReusableDialog dialog
+// Marked final as the assignment scope is fixed, no more extension needed.
 
 class CReusableDialog final : public CDialogEx
 {
@@ -10,7 +11,6 @@ class CReusableDialog final : public CDialogEx
 
 public:
 	CReusableDialog(DialogDataModel& model, CWnd* pParent = nullptr);   // standard constructor
-	virtual ~CReusableDialog() = default;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
@@ -18,8 +18,8 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual BOOL OnInitDialog();
+	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
+	BOOL OnInitDialog() override;
 
 	DECLARE_MESSAGE_MAP()
 
