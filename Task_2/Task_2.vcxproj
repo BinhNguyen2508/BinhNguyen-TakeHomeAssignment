@@ -183,16 +183,20 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Converter.h" />
     <ClInclude Include="CReusableDialog.h" />
-    <ClInclude Include="DialogDataModel.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GroundWaterMethod.h" />
+    <ClInclude Include="MethodCollection.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Task_2.h" />
     <ClInclude Include="Task_2Dlg.h" />
+    <ClInclude Include="ThermalMethod.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Converter.cpp" />
     <ClCompile Include="CReusableDialog.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -1,6 +1,6 @@
 #pragma once
 #include "afxdialogex.h"
-#include "DialogDataModel.h"
+#include "MethodCollection.h"
 
 // CReusableDialog dialog
 // Marked final as the assignment scope is fixed, no more extension needed.
@@ -10,7 +10,15 @@ class CReusableDialog final : public CDialogEx
 	DECLARE_DYNAMIC(CReusableDialog)
 
 public:
-	CReusableDialog(DialogDataModel& model, CWnd* pParent = nullptr);   // standard constructor
+	enum class Type : uint8_t
+	{
+		GroundWaterSetting = 0,
+		ThermalSetting = 1
+	};
+
+	CReusableDialog(Type dialogType,
+					Models::MethodCollection& methodData,
+					CWnd* pParent = nullptr);   // standard constructor
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
@@ -24,11 +32,14 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	DialogDataModel&	m_model;
+	Type				m_dialogType;
+
 	CComboBox			m_comboBox;
 	CStatic				m_label;
 
-	void AdjustComboBoxDropHeight(CComboBox& comboBox, int visibleItems);
+	Models::MethodCollection& m_methodData;
+
+	void AdjustComboBoxDropHeight();
 
 	afx_msg void OnCbnSelchangeCombobox();
 };

@@ -3,7 +3,7 @@
 //
 
 #pragma once
-//#include "CReusableDialog.h"
+#include "MethodCollection.h"
 
 // CTask2Dlg dialog
 // Marked final as the assignment scope is fixed, no more extension needed.
@@ -12,7 +12,7 @@ class CTask2Dlg final : public CDialogEx
 {
 // Construction
 public:
-	CTask2Dlg(CWnd* pParent = nullptr);	// standard constructor
+	CTask2Dlg(Models::MethodCollection& methodData, CWnd* pParent = nullptr);	// standard constructor
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
@@ -37,11 +37,8 @@ public:
 	afx_msg void OnBnClickedButton2();
 
 private:
-	CStringArray	m_groundWaterMethodOptions;
-	CStringArray	m_thermalMethodOptions;
-	int				m_groundWaterMethodSelectedOptionIndex;
-	int				m_thermalMethodSelectedOptionIndex;
+	CStatic				m_groundWaterMethodLabel;
+	CStatic				m_thermalMethodLabel;
 
-	CStatic			m_groundWaterMethodLabel;
-	CStatic			m_thermalMethodLabel;
+	Models::MethodCollection&	m_methodData;
 };

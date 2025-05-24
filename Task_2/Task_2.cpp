@@ -4,6 +4,7 @@
 
 #include "pch.h"
 #include "framework.h"
+#include "MethodCollection.h"
 #include "Task_2.h"
 #include "Task_2Dlg.h"
 
@@ -56,7 +57,10 @@ BOOL CTask2App::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
-	CTask2Dlg dlg;
+	Models::GroundWaterMethod groundWaterMethod;
+	Models::ThermalMethod thermalMethod;
+	Models::MethodCollection methodData(groundWaterMethod, thermalMethod);
+	CTask2Dlg dlg(methodData);
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)

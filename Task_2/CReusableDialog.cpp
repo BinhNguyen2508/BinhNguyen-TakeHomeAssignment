@@ -5,14 +5,20 @@
 #include "Task_2.h"
 #include "afxdialogex.h"
 #include "CReusableDialog.h"
+#include "Converter.h"
 
+#include <map>
 
 // CReusableDialog dialog
 
 IMPLEMENT_DYNAMIC(CReusableDialog, CDialogEx)
 
-CReusableDialog::CReusableDialog(DialogDataModel& model, CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_REUSABLE_DIALOG, pParent), m_model(model)
+CReusableDialog::CReusableDialog(Type dialogType,
+								Models::MethodCollection& methodData,
+								CWnd* pParent /*=nullptr*/)
+								: m_dialogType(dialogType),
+								m_methodData(methodData),
+								CDialogEx(IDD_REUSABLE_DIALOG, pParent)
 {
 }
 
@@ -32,41 +38,58 @@ BOOL CReusableDialog::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
 
-	m_label.SetWindowTextW(m_model.GetSettingLabelText());
-	
-	CStringArray* modelComboBoxOptions = m_model.GetSettingComboBoxOptions();
+	switch (m_dialogType)
+	{
+	case CReusableDialog::Type::GroundWaterSetting:
+		m_label.SetWindowTextW(CString("Ground Water Method:"));
 
-	if (modelComboBoxOptions) {
-		for (int i = 0; i < modelComboBoxOptions->GetCount(); i++)
-			m_comboBox.AddString(modelComboBoxOptions->GetAt(i));
+		for (auto entry : Utilities::mapGroundWaterMethod)
+			m_comboBox.AddString(entry.second);
 
-		AdjustComboBoxDropHeight(m_comboBox, modelComboBoxOptions->GetCount());
-		m_comboBox.SetCurSel(m_model.GetSelectedOptionIndex());
+		m_comboBox.SetCurSel(static_cast<int>(m_methodData.GetThermalMethod()));
+		break;
+	case CReusableDialog::Type::ThermalSetting:
+		m_label.SetWindowTextW(CString("Thermal Method:"));
+
+		for (auto entry : Utilities::mapThermalMethod)
+			m_comboBox.AddString(entry.second);
+
+		m_comboBox.SetCurSel(static_cast<int>(m_methodData.GetThermalMethod()));
+		break;
 	}
 
+	AdjustComboBoxDropHeight();
 	return true;
 }
 
 // CReusableDialog message handlers
 void CReusableDialog::OnCbnSelchangeCombobox()
 {
-	m_model.SetSelectedOptionIndex(m_comboBox.GetCurSel());
+	switch (m_dialogType)
+	{
+	case CReusableDialog::Type::GroundWaterSetting:
+		m_methodData.SetGroundWaterMethod(static_cast<Models::GroundWaterMethod::Value>(m_comboBox.GetCurSel()));
+		break;
+	case CReusableDialog::Type::ThermalSetting:
+		m_methodData.SetThermalMethod(static_cast<Models::ThermalMethod::Value>(m_comboBox.GetCurSel()));
+		break;
+	}
 }
 
-void CReusableDialog::AdjustComboBoxDropHeight(CComboBox& comboBox, int visibleItems)
+void CReusableDialog::AdjustComboBoxDropHeight()
 {
 	// Get the item height (height of one list item)
-	int comboBoxHeight = comboBox.GetItemHeight(-1);  // -1 = Get height of the combobox
-	int dropItemHeight = comboBox.GetItemHeight(0);  // Get height of dropdown item
+	int comboBoxHeight = m_comboBox.GetItemHeight(-1);  // -1 = Get height of the combobox
+	int dropItemHeight = m_comboBox.GetItemHeight(0);  // Get height of dropdown item
 
 	// Get current size and position
 	CRect rect;
-	comboBox.GetWindowRect(&rect);
+	m_comboBox.GetWindowRect(&rect);
 	ScreenToClient(&rect);
 
 	// Calculate total height: combobox control's height + ((number of visible items + 1) * item height)
-	int totalHeight = comboBoxHeight + ((visibleItems + 1) * dropItemHeight);
+	int totalHeight = comboBoxHeight + ((m_comboBox.GetCount() + 1) * dropItemHeight);
 
 	// Resize the control (width and position stay the same)
-	comboBox.MoveWindow(rect.left, rect.top, rect.Width(), totalHeight);
+	m_comboBox.MoveWindow(rect.left, rect.top, rect.Width(), totalHeight);
 }
