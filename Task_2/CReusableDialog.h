@@ -2,6 +2,8 @@
 #include "afxdialogex.h"
 #include "MethodCollection.h"
 
+namespace Dialogs
+{
 // CReusableDialog dialog
 // Marked final as the assignment scope is fixed, no more extension needed.
 
@@ -43,3 +45,4 @@ private:
 
 	afx_msg void OnCbnSelchangeCombobox();
 };
+}

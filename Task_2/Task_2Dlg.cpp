@@ -97,7 +97,7 @@ HCURSOR CTask2Dlg::OnQueryDragIcon()
 void CTask2Dlg::OnBnClickedButton1()
 {
 	//Construct CReusableDialog
-	CReusableDialog settingDialog(CReusableDialog::Type::GroundWaterSetting, m_methodData, this);
+	Dialogs::CReusableDialog settingDialog(Dialogs::CReusableDialog::Type::GroundWaterSetting, m_methodData, this);
 
 	//Launch CReusableDialog
 	settingDialog.DoModal();
@@ -110,7 +110,7 @@ void CTask2Dlg::OnBnClickedButton1()
 void CTask2Dlg::OnBnClickedButton2()
 {
 	//Construct CReusableDialog
-	CReusableDialog settingDialog(CReusableDialog::Type::ThermalSetting, m_methodData, this);
+	Dialogs::CReusableDialog settingDialog(Dialogs::CReusableDialog::Type::ThermalSetting, m_methodData, this);
 
 	//Launch CReusableDialog
 	settingDialog.DoModal();

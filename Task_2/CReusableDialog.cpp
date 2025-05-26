@@ -9,16 +9,18 @@
 
 #include <map>
 
+namespace Dialogs
+{
 // CReusableDialog dialog
 
 IMPLEMENT_DYNAMIC(CReusableDialog, CDialogEx)
 
-CReusableDialog::CReusableDialog(Type dialogType,
-								Models::MethodCollection& methodData,
-								CWnd* pParent /*=nullptr*/)
-								: m_dialogType(dialogType),
-								m_methodData(methodData),
-								CDialogEx(IDD_REUSABLE_DIALOG, pParent)
+	CReusableDialog::CReusableDialog(Type dialogType,
+									Models::MethodCollection& methodData,
+									CWnd* pParent /*=nullptr*/)
+									: m_dialogType(dialogType),
+									m_methodData(methodData),
+									CDialogEx(IDD_REUSABLE_DIALOG, pParent)
 {
 }
 
@@ -36,7 +38,7 @@ END_MESSAGE_MAP()
 
 BOOL CReusableDialog::OnInitDialog()
 {
-    CDialogEx::OnInitDialog();
+	CDialogEx::OnInitDialog();
 
 	switch (m_dialogType)
 	{
@@ -46,7 +48,7 @@ BOOL CReusableDialog::OnInitDialog()
 		for (auto entry : Utilities::mapGroundWaterMethod)
 			m_comboBox.AddString(entry.second);
 
-		m_comboBox.SetCurSel(static_cast<int>(m_methodData.GetThermalMethod()));
+		m_comboBox.SetCurSel(static_cast<int>(m_methodData.GetGroundWaterMethod()));
 		break;
 	case CReusableDialog::Type::ThermalSetting:
 		m_label.SetWindowTextW(CString("Thermal Method:"));
@@ -92,4 +94,5 @@ void CReusableDialog::AdjustComboBoxDropHeight()
 
 	// Resize the control (width and position stay the same)
 	m_comboBox.MoveWindow(rect.left, rect.top, rect.Width(), totalHeight);
+}
 }

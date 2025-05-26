@@ -5,10 +5,10 @@
 
 namespace Utilities
 {
-extern std::map<Models::GroundWaterMethod::Value, LPCWSTR> mapGroundWaterMethod;
-extern std::map<Models::ThermalMethod::Value, LPCWSTR> mapThermalMethod;
+extern const std::map<Models::GroundWaterMethod::Value, LPCWSTR> mapGroundWaterMethod;
+extern const std::map<Models::ThermalMethod::Value, LPCWSTR> mapThermalMethod;
 
-CString ToString(Models::GroundWaterMethod::Value method);
-CString ToString(Models::ThermalMethod::Value method);
-uint8_t ToEnum(const CString& methodString);
+extern CString ToString(Models::GroundWaterMethod::Value method);
+extern CString ToString(Models::ThermalMethod::Value method);
+extern uint8_t ToEnum(const CString& methodString);
 }
